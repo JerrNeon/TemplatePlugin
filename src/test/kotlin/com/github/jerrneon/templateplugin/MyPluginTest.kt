@@ -7,6 +7,8 @@ import com.intellij.testFramework.TestDataPath
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import com.intellij.util.PsiErrorElementUtil
 import com.github.jerrneon.templateplugin.services.MyProjectService
+import component.util.humpToUnderline
+import component.util.underlineToHump
 
 @TestDataPath("\$CONTENT_ROOT/src/test/testData")
 class MyPluginTest : BasePlatformTestCase() {
@@ -36,4 +38,12 @@ class MyPluginTest : BasePlatformTestCase() {
     }
 
     override fun getTestDataPath() = "src/test/testData/rename"
+
+    fun testUnderlineToHump(){
+        println("activity_main_info".underlineToHump())
+    }
+
+    fun testHumpToUnderline(){
+        println("MainInfoActivity".humpToUnderline())
+    }
 }

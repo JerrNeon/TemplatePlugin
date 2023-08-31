@@ -1,15 +1,20 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.jerrneon.templateplugin</id>
-    <name>TemplatePlugin Template</name>
+    <name>Zondy Template</name>
     <vendor>jerrneon</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.android</depends>
+    <depends>com.intellij.modules.androidstudio</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow factoryClass="com.github.jerrneon.templateplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+    </extensions>
+    <extensions defaultExtensionNs="com.android.tools.idea.wizard.template">
+        <wizardTemplateProvider  implementation="component.WizardTemplateProviderImpl" id="MyToolWindow"/>
     </extensions>
 
     <applicationListeners>
