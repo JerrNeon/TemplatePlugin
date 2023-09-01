@@ -1,12 +1,12 @@
 package component.fragment.src
 
+import com.android.tools.idea.wizard.template.Language
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import component.activity.res.layout.createActivityXml
 import component.fragment.src.app_package.createFragmentKt
 import component.router.*
 import component.util.appendToJavaFile
-import component.util.appendToSecondLineFromTheBottom
 import component.viewmodel.createViewModelKt
 import java.io.File
 
@@ -17,6 +17,7 @@ import java.io.File
 fun RecipeExecutor.createFragmentRecipe(
     moduleData: ModuleTemplateData,
     packageName: String,
+    language: Language,
     fragmentClass: String,
     layoutName: String,
     isDataBinding: Boolean,
@@ -24,7 +25,8 @@ fun RecipeExecutor.createFragmentRecipe(
     isRouter: Boolean
 ) {
     val (projectData, srcOut, resOut) = moduleData
-    val ktOrJavaExt = projectData.language.extension
+//    val ktOrJavaExt = projectData.language.extension
+    val ktOrJavaExt = language.extension
 
 //    val applicationPackage = projectData.applicationPackage
     val createFragment = createFragmentKt(
@@ -66,7 +68,7 @@ fun RecipeExecutor.createFragmentRecipe(
                     fragmentClass,
                     false
                 ),
-                getRouterDeclare(fragmentClass)
+                getRouterDeclare(packageName, fragmentClass)
             )
         } else {
             save(

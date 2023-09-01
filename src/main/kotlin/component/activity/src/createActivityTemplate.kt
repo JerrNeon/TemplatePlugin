@@ -65,19 +65,27 @@ val createActivityTemplate
             suggest = { packageName }
         }
 
+        val language = enumParameter<Language> {
+            name = "Source Language"
+            help = "请选择语言"
+            default = Language.Java
+        }
+
         widgets(
             TextFieldWidget(activityClass),
             TextFieldWidget(layoutName),
             CheckBoxWidget(isDataBinding),
             CheckBoxWidget(isViewModel),
             CheckBoxWidget(isRouter),
-            PackageNameWidget(packageName)
+            PackageNameWidget(packageName),
+            EnumWidget(language),
         )
 
         recipe = { data: TemplateData ->
             createActivityRecipe(
                 data as ModuleTemplateData,
                 packageName.value,
+                language.value,
                 activityClass.value,
                 layoutName.value,
                 isDataBinding.value,

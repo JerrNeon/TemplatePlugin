@@ -12,8 +12,7 @@ fun createRouterKt(
     componentClass: String,
     isCreate: Boolean
 ): String {
-    val routerName = componentClass.routerName()
-    val routerPath = packageName.routerPath(componentClass)
+    val routerDeclare = getRouterDeclare(packageName, componentClass)
     return buildString {
         if (isCreate) {
             append(
@@ -21,18 +20,21 @@ fun createRouterKt(
                     
 public class ARoutePath {
 
-    public static final String $routerName = "$routerPath";
+    $routerDeclare
 }
                 """
             )
         } else {
-            append("""    public static final String $routerName = "$routerPath";""")
+            append("""    $routerDeclare""")
         }
     }
 }
 
 fun getRouterDeclare(
+    packageName: String,
     componentClass: String
 ): String {
-    return componentClass.routerName()
+    val routerName = componentClass.routerName()
+    val routerPath = packageName.routerPath(componentClass)
+    return "public static final String $routerName = \"$routerPath\";"
 }

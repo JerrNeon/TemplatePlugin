@@ -31,14 +31,22 @@ val createArchitectureTemplate
             suggest = { packageName }
         }
 
+        val language = enumParameter<Language> {
+            name = "Source Language"
+            help = "请选择语言"
+            default = Language.Java
+        }
+
         widgets(
-            PackageNameWidget(packageName)
+            PackageNameWidget(packageName),
+            EnumWidget(language)
         )
 
         recipe = { data: TemplateData ->
             createArchitectureRecipe(
                 data as ModuleTemplateData,
-                packageName.value
+                packageName.value,
+                language.value
             )
         }
 

@@ -1,5 +1,6 @@
 package component.architecture
 
+import com.android.tools.idea.wizard.template.Language
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import component.architecture.app_package.*
@@ -15,10 +16,12 @@ import java.io.File
  */
 fun RecipeExecutor.createArchitectureRecipe(
     moduleData: ModuleTemplateData,
-    packageName: String
+    packageName: String,
+    language: Language,
 ) {
-    val (projectData, srcOut, _) = moduleData
-    val ktOrJavaExt = projectData.language.extension
+    val (_, srcOut, _) = moduleData
+//    val ktOrJavaExt = projectData.language.extension
+    val ktOrJavaExt = language.extension
 
 //    val applicationPackage = projectData.applicationPackage
     val repositoryName = packageName.repositoryName()

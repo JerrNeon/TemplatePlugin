@@ -65,19 +65,27 @@ val createFragmentTemplate
             suggest = { packageName }
         }
 
+        val language = enumParameter<Language> {
+            name = "Source Language"
+            help = "请选择语言"
+            default = Language.Java
+        }
+
         widgets(
             TextFieldWidget(fragmentClass),
             TextFieldWidget(layoutName),
             CheckBoxWidget(isDataBinding),
             CheckBoxWidget(isViewModel),
             CheckBoxWidget(isRouter),
-            PackageNameWidget(packageName)
+            PackageNameWidget(packageName),
+            EnumWidget(language)
         )
 
         recipe = { data: TemplateData ->
             createFragmentRecipe(
                 data as ModuleTemplateData,
                 packageName.value,
+                language.value,
                 fragmentClass.value,
                 layoutName.value,
                 isDataBinding.value,

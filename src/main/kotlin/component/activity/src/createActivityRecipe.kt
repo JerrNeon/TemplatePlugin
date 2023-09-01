@@ -1,5 +1,6 @@
 package component.activity.src
 
+import com.android.tools.idea.wizard.template.Language
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.android.tools.idea.wizard.template.impl.activities.common.generateManifest
@@ -18,6 +19,7 @@ import java.io.File
 fun RecipeExecutor.createActivityRecipe(
     moduleData: ModuleTemplateData,
     packageName: String,
+    language: Language,
     activityClass: String,
     layoutName: String,
     isDataBinding: Boolean,
@@ -25,7 +27,8 @@ fun RecipeExecutor.createActivityRecipe(
     isRouter: Boolean
 ) {
     val (projectData, srcOut, resOut) = moduleData
-    val ktOrJavaExt = projectData.language.extension
+//    val ktOrJavaExt = projectData.language.extension
+    val ktOrJavaExt = language.extension
 //    generateManifest(
 //    moduleData: com.android.tools.idea.wizard.template.ModuleTemplateData,
 //    activityClass: kotlin.String, packageName: kotlin.String,
@@ -93,7 +96,7 @@ fun RecipeExecutor.createActivityRecipe(
                     activityClass,
                     false
                 ),
-                getRouterDeclare(activityClass)
+                getRouterDeclare(packageName, activityClass)
             )
         } else {
             save(
