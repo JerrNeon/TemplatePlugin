@@ -5,7 +5,10 @@ import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.android.tools.idea.wizard.template.impl.activities.common.generateManifest
 import component.activity.res.layout.createActivityXml
 import component.activity.src.app_package.createActivityKt
+import component.router.*
+import component.util.appendToJavaFile
 import component.viewmodel.createViewModelKt
+import java.io.File
 
 /**
  * Author：Stevie.Chen Time：2023/8/30
@@ -75,5 +78,78 @@ fun RecipeExecutor.createActivityRecipe(
             createViewModelKt(packageName, activityClass),
             srcOut.resolve("viewmodel/${activityClass}ViewModel.${ktOrJavaExt}")
         )
+    }
+    if (isRouter) {
+        val routerRootPath = "biz_common/src/main/java/com/zondy/biz/common/router"
+        // 生成Router
+        val routerFile = File(
+            projectData.rootDir,
+            "$routerRootPath/ARoutePath.${ktOrJavaExt}"
+        )
+        if (routerFile.exists()) {
+            routerFile.appendToJavaFile(
+                createRouterKt(
+                    packageName,
+                    activityClass,
+                    false
+                ),
+                getRouterDeclare(activityClass)
+            )
+        } else {
+            save(
+                createRouterKt(packageName, activityClass, true),
+                routerFile
+            )
+        }
+        // 生成RouterService
+        val routerServiceFile = File(
+            projectData.rootDir,
+            "$routerRootPath/service/RouterService.${ktOrJavaExt}"
+        )
+        if (routerServiceFile.exists()) {
+            routerServiceFile.appendToJavaFile(
+                createRouterServiceKt(
+                    activityClass,
+                    isCreate = false,
+                    isActivity = true
+                ),
+                getRouterServiceDeclare(activityClass, isActivity = true)
+            )
+        } else {
+            save(
+                createRouterServiceKt(
+                    activityClass,
+                    isCreate = true,
+                    isActivity = true
+                ),
+                routerServiceFile
+            )
+        }
+        // 生成RouterServiceImpl
+        val routerServiceImplFile = File(
+            projectData.rootDir,
+            "$routerRootPath/service/RouterServiceIml.${ktOrJavaExt}"
+        )
+        if (routerServiceImplFile.exists()) {
+            routerServiceImplFile.appendToJavaFile(
+                createRouterServiceImplKt(
+                    packageName,
+                    activityClass,
+                    isCreate = false,
+                    isActivity = true
+                ),
+                getRouterServiceImplDeclare(activityClass, isActivity = true)
+            )
+        } else {
+            save(
+                createRouterServiceImplKt(
+                    packageName,
+                    activityClass,
+                    isCreate = true,
+                    isActivity = true
+                ),
+                routerServiceImplFile
+            )
+        }
     }
 }

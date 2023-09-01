@@ -6,7 +6,6 @@ import component.architecture.app_package.*
 import component.architecture.app_package.createIDBDataSourceKt
 import component.util.apiServiceName
 import component.util.constantName
-import component.util.crateDir
 import component.util.repositoryName
 import java.io.File
 
@@ -29,7 +28,7 @@ fun RecipeExecutor.createArchitectureRecipe(
         srcOut.resolve("app/${packageName.constantName()}.${ktOrJavaExt}")
     )
     // 创建bean目录
-    File(srcOut, "data/bean").crateDir()
+    createDirectory(File(srcOut, "data/bean"))
     // 保存Repository
     save(
         createRepositoryKt(packageName),
@@ -71,9 +70,9 @@ fun RecipeExecutor.createArchitectureRecipe(
         srcOut.resolve("data/source/net/${packageName.apiServiceName()}.${ktOrJavaExt}")
     )
     // 创建activity目录
-    File(srcOut, "ui/activity").crateDir()
+    createDirectory(File(srcOut, "ui/activity"))
     // 创建fragment目录
-    File(srcOut, "ui/fragment").crateDir()
+    createDirectory(File(srcOut, "ui/fragment"))
     // 创建viewmodel目录
-    File(srcOut, "viewmodel").crateDir()
+    createDirectory(File(srcOut, "viewmodel"))
 }

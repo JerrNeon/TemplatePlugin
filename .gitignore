@@ -1,5 +1,7 @@
+.github
 .gradle
 .idea
+.run
 .qodana
 build
 /local.properties

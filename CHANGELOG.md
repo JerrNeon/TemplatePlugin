@@ -5,3 +5,4 @@
 ## [Unreleased]
 ### Added
 - create project template plugin of Zondy Company
+- add router config generate

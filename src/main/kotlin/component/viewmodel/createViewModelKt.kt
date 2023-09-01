@@ -9,9 +9,9 @@ import component.util.viewModelName
  */
 fun createViewModelKt(
     packageName: String,
-    activityClass: String
+    componentClass: String
 ): String {
-    val viewModelName = activityClass.viewModelName()
+    val viewModelName = componentClass.viewModelName()
     val repositoryName = packageName.repositoryName()
     val sb = StringBuilder()
     sb.append(

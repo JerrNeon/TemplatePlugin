@@ -1,6 +1,7 @@
 package component.fragment.src.app_package
 
 import component.util.dataBindingName
+import component.util.routerName
 import component.util.viewModelName
 
 /**
@@ -22,6 +23,7 @@ fun createFragmentKt(
     } else {
         "com.zondy.lib.core.base.RootFragment"
     }
+    val routerName = fragmentClass.routerName()
     val dataBingClassName = if (isDataBinding) layoutName.dataBindingName() else ""
     val dataBingPackName =
         if (isDataBinding) "import ${packageName}.databinding.$dataBingClassName;" else ""
@@ -75,7 +77,7 @@ $viewModelPackName
         if (isRouter) {
             append(
                 """
-@Route(path = ARoutePath.)"""
+@Route(path = ARoutePath.$routerName)"""
             )
         }
         append(

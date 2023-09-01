@@ -1,6 +1,8 @@
 package component.activity.src.app_package
 
 import component.util.dataBindingName
+import component.util.humpToUnderline
+import component.util.routerName
 import component.util.viewModelName
 
 /**
@@ -22,6 +24,7 @@ fun createActivityKt(
     } else {
         "com.zondy.lib.core.base.RootActivity"
     }
+    val routerName = activityClass.routerName()
     val dataBingClassName = if (isDataBinding) layoutName.dataBindingName() else ""
     val dataBingPackName =
         if (isDataBinding) "import ${packageName}.databinding.$dataBingClassName;" else ""
@@ -61,7 +64,7 @@ $viewModelPackName
         if (isRouter) {
             append(
                 """
-@Route(path = ARoutePath.)"""
+@Route(path = ARoutePath.$routerName)"""
             )
         }
         append(

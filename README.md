@@ -17,12 +17,12 @@
 - [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
 
 <!-- Plugin description -->
-This Template IntelliJ Platform Plugin is implementation of [Architecture][Activity][Fragment] generate.
+This Template IntelliJ Platform Plugin is implementation of [Architecture] [Activity] [Fragment] generate.
 
-Pressed Right Mouse,
-Select [New->Other->Zondy Architecture] generate Architecture Template;
-Select [New->Other->Zondy Activity] generate Activity Template;
-Select [New->Other->Zondy Fragment] generate Fragment Template.
+### Pressed Right Mouse
+- <kbd>New</kbd> / <kbd>Other</kbd> / <kbd>Zondy Architecture</kbd> generate Architecture Template.
+- <kbd>New</kbd> / <kbd>Other</kbd> / <kbd>Zondy Activity</kbd> generate Activity Template.
+- <kbd>New</kbd> / <kbd>Other</kbd> / <kbd>Zondy Fragment</kbd> generate Fragment Template.
 <!-- Plugin description end -->
 
 ## Installation
